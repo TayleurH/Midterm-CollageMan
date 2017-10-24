@@ -1,0 +1,114 @@
+
+var img;
+var imglost;
+var img2man;
+var image3nextlevel
+var timeSnapshot;
+
+
+var curState;
+
+function preload() {
+  img = loadImage("BeFunky_Collage.jpg");
+  img2man = loadImage("Untitled_design_12.png");
+  img3nextlevel = loadImage("On_To_Level_Two____Intact_1.png");
+    imglost = loadImage("Try_Again.png");
+
+}
+
+
+
+
+function setup(){
+	createCanvas(600,600);
+  
+  	timeSnapshot = 10;
+
+  
+  
+	curState = 0;
+}
+
+function draw(){
+  background(255);
+  image(img2man, mouseX,mouseY,300,300);
+  
+
+	if(curState == 0){
+		background(0,0,0);
+      image(img2man, mouseX,mouseY,300,300);
+  
+      stroke(255,0,0);
+      textSize(18);
+text("CollageMAN.", 0, 30);
+       textSize(18);
+      fill(255,255,0);
+text("A Twisted Photo World.", 130, 30);
+      textSize(32);
+      fill(255);
+text("How To Play", 0, 120);
+      textSize(18);
+text("1. Observe the Image that Flashes on the Screen.", 10, 200);
+      textSize(18);
+text("2. Find the Image in the Photo Collage", 40, 250);
+      textSize(18);
+text("3. Click the Image to Avoid Losing Limbs...", 70 , 300);
+      textSize(18);
+text("4. 10 Second Photo Find Each Round", 100, 350);
+      textSize(18);
+text("5. End Goal: Keep Your CollageMan ALIVE", 130, 400);
+	}
+	else if(curState == 1){
+		background(0,0,0);
+            image(img2man, mouseX,mouseY,300,300);
+
+      textSize(200);
+      stroke(255);
+      fill(0);
+text("Find", 100 , 250);
+      textSize(300);
+      stroke(255,0,0);
+text("8", 100 , 500);
+	}
+	else if(curState == 2){
+           background(0);   
+  image(img, 10,10,500,500);
+            image(img2man, mouseX,mouseY,300,300);
+
+      
+
+      var timeDiff =  second() - timeSnapshot;
+
+      
+    
+      
+      if(timeDiff == 10){
+		//timeSnapshot = second();
+      image(imglost, 0,0, 600,600);
+      exit();
+	
+
+	}
+	
+      fill(255);	
+      textSize(35)
+
+      text(timeDiff, 550,50);
+      
+      if(mouseX>360&&mouseY<85){
+      image(img3nextlevel,0,0,600,600);
+      }
+         
+	}
+	
+}
+
+
+
+function mousePressed(){
+	if(curState < 2){
+		curState++;
+	}
+	else curState = 0;
+}
+
